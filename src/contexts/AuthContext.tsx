@@ -89,6 +89,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     // await TwilioManager.cleanup(); // TODO: Add cleanup
     await storage.clear();
+    
     setToken(null);
     setUser(null);
   };

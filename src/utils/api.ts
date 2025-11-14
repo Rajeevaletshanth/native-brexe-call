@@ -3,7 +3,7 @@
 import { storage } from './storage';
 import { LoginPayload } from '../types/auth';
 
-const API_BASE_URL = 'https://api.yourdomain.com'; // TODO: Update this
+const API_BASE_URL = 'http://51.21.108.179:5001'; 
 
 type ApiOptions = {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';

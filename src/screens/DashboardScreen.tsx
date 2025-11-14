@@ -41,15 +41,20 @@ export default function DashboardScreen() {
   const { user } = useAuth();
   const [phoneNumber, setPhoneNumber] = useState('');
 
+
   const handleMakeCall = () => {
     console.log(phoneNumber);
     if (!phoneNumber) {
       Alert.alert('Error', 'Please enter a phone number to call.');
       return;
     }
+
+    const accessToken = ''; // TODO: Retrieve valid Twilio access token from the storage
+
     // E.164 format is recommended (e.g., +1234567890)
     // TODO: Ensure TwilioManager is initialized in AuthContext
-    // TwilioManager.makeCall(phoneNumber);
+    TwilioManager.makeCall(accessToken, phoneNumber);
+
     Alert.alert('Make Call', `Calling ${phoneNumber}... (Twilio integration needed)`);
   };
 

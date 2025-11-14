@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610954028863",
+    "project_id": "brexecall",
+    "storage_bucket": "brexecall.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610954028863:android:5129a5d780e611c6b9158a",
+        "android_client_info": {
+          "package_name": "com.brexecallapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVXuNFaYCqVaTc2S6j8sEhUfj7JPCelvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
