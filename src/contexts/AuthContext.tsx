@@ -26,7 +26,11 @@ async function initializeServices() {
     // const hasPermissions = await TwilioManager.requestPermissions();
     // if (!hasPermissions) return;
     // await TwilioManager.registerForPushNotifications();
-    // const { token: twilioToken } = await api.getTwilioToken();
+    
+    // Fetch and store Twilio token per instructions
+    const { token: twilioToken } = await api.getTwilioToken();
+    await storage.setTwilioToken(twilioToken);
+    
     // await TwilioManager.initialize();
   } catch (error) {
     console.error('Error initializing services:', error);

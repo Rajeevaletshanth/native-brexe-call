@@ -14,6 +14,7 @@ import { PhoneCall, TrendingUp, Clock, Users } from 'lucide-react-native';
 import { TwilioManager } from '../utils/TwilioManager';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { storage } from '../utils/storage'; // Import storage
 
 // Mock data from your original file
 const MOCK_CALLS: CallRecord[] = [
@@ -41,15 +42,24 @@ export default function DashboardScreen() {
   const { user } = useAuth();
   const [phoneNumber, setPhoneNumber] = useState('');
 
-
-  const handleMakeCall = () => {
+  // Make function async to await storage
+  const handleMakeCall = async () => {
     console.log(phoneNumber);
     if (!phoneNumber) {
       Alert.alert('Error', 'Please enter a phone number to call.');
       return;
     }
 
-    const accessToken = ''; // TODO: Retrieve valid Twilio access token from the storage
+    // Retrieve valid Twilio access token from storage per instructions
+    const accessToken = await storage.getTwilioToken(); 
+
+    if (!accessToken) {
+      Alert.alert(
+        'Error', 
+        'Twilio token not found. Please log out and log in again.'
+      );
+      return;
+    }
 
     // E.164 format is recommended (e.g., +1234567890)
     // TODO: Ensure TwilioManager is initialized in AuthContext

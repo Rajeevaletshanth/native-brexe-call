@@ -5,6 +5,7 @@ import { User } from '../types/auth';
 const STORAGE_KEYS = {
   TOKEN: '@brexe_token',
   USER: '@brexe_user',
+  TWILIO_TOKEN: '@brexe_twilio_token', 
 };
 
 export const storage = {
@@ -25,7 +26,22 @@ export const storage = {
     return userString ? JSON.parse(userString) : null;
   },
 
+  // Added function to set Twilio token
+  async setTwilioToken(token: string): Promise<void> {
+    await AsyncStorage.setItem(STORAGE_KEYS.TWILIO_TOKEN, token);
+  },
+
+  // Added function to get Twilio token
+  async getTwilioToken(): Promise<string | null> {
+    return await AsyncStorage.getItem(STORAGE_KEYS.TWILIO_TOKEN);
+  },
+
   async clear(): Promise<void> {
-    await AsyncStorage.multiRemove([STORAGE_KEYS.TOKEN, STORAGE_KEYS.USER]);
+    // Added Twilio token to multiRemove
+    await AsyncStorage.multiRemove([
+      STORAGE_KEYS.TOKEN,
+      STORAGE_KEYS.USER,
+      STORAGE_KEYS.TWILIO_TOKEN,
+    ]);
   },
 };

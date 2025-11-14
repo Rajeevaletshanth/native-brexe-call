@@ -57,38 +57,34 @@ async function apiFetch<T>(
 
 export const api = {
   login: (payload: LoginPayload): Promise<any> => {
-    // Mock API call
-    console.log('Mock login with:', payload.email);
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          token: 'mock_jwt_token_12345',
-          user: {
-            id: 'u-1',
-            username: 'Test User',
-            email: payload.email,
-            avatar_url: '',
-          },
-        });
-      }, 1000);
+    // Use live API endpoint per instructions
+    console.log('Attempting login with:', payload.email);
+    return apiFetch<any>('/admin/login', {
+      method: 'POST',
+      body: payload,
     });
-    // return apiFetch<LoginResponse>('/auth/login', { method: 'POST', body: payload });
   },
 
   validateToken: (token: string): Promise<any> => {
-    // Mock validation
-    console.log('Mock validating token:', token);
-    return Promise.resolve({ authenticate: true });
-    // return apiFetch<TokenValidation>('/auth/validate', {
-    //   method: 'POST',
-    //   body: { token },
-    // });
+    // Use live API endpoint per instructions
+    console.log('Validating token...');
+    return apiFetch<any>('/validate', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+      // Response is expected to have an 'authenticate' boolean property
+      // as checked in AuthContext.tsx
+    });
   },
 
   getTwilioToken: (): Promise<{ token: string }> => {
-    // Mock Twilio token
-    console.log('Mock getting Twilio token');
-    return Promise.resolve({ token: 'mock_twilio_token_67890' });
-    // return apiFetch<{ token: string }>('/call/token', { needsAuth: true });
+    // Use live API endpoint per instructions
+    console.log('Getting Twilio token...');
+    // apiFetch returns the full JSON response, which includes a 'token' key
+    return apiFetch<{ token: string }>('/twilio/token', {
+      method: 'GET',
+      needsAuth: true 
+    });
   },
 };
