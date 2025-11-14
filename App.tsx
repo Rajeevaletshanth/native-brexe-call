@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TwilioManager } from './src/utils/TwilioManager';
-
+import { callManager } from './src/utils/CallManager';
 import { AuthProvider, useAuth } from './src/contexts/AuthContext';
 import LoginScreen from './src/screens/LoginScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
@@ -75,12 +75,19 @@ function RootNavigator() {
   );
 }
 
-TwilioManager.initializeListeners();
+// TwilioManager.initializeListeners();
 
 /**
  * This is the main App component, wrapping everything in the providers.
  */
 export default function App() {
+
+  useEffect(() => {
+    // Initialize all global listeners once the app is mounted
+    TwilioManager.initializeListeners();
+    callManager.initializeListeners(); // This was the missing line
+  }, []);
+  
   return (
     <AuthProvider>
       <NavigationContainer>
