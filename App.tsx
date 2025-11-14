@@ -3,6 +3,7 @@ import { ActivityIndicator, View, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { TwilioManager } from './src/utils/TwilioManager';
 
 import { AuthProvider, useAuth } from './src/contexts/AuthContext';
 import LoginScreen from './src/screens/LoginScreen';
@@ -73,6 +74,8 @@ function RootNavigator() {
     </Stack.Navigator>
   );
 }
+
+TwilioManager.initializeListeners();
 
 /**
  * This is the main App component, wrapping everything in the providers.
