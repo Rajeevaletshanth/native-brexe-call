@@ -15,7 +15,7 @@ import { Platform } from 'react-native';
 // import { Voice } from '@twilio/voice-react-native-sdk';
 
 export class TwilioManager {
-  // static voice = new Voice();
+//   static voice = new Voice();
 
   static async requestPermissions(): Promise<boolean> {
     console.log('Requesting permissions...');

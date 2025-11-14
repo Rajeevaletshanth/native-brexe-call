@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "a04": "react-native run-android device R9DW8037G3Y",
+    "a04": "react-native run-android --deviceId R9DW8037G3Y",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
